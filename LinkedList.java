@@ -2,13 +2,13 @@ public class LinkedList implements List {
 	
 	public class Node {
 		public Object data;
-		public Object left;
-		public Object right;
+		public Object next;
+		public Object prev;
 		
 		public Node(Object dataValue) {
 			this.data = dataValue;
-			this.left = null;
-			this.right = null;
+			this.next = null;
+			this.prev = null;
 		}
 	}
 
@@ -21,7 +21,9 @@ public class LinkedList implements List {
 	}
 	
 	public void add(Object obj) throws Exception {
-	
+		Node newNode = new Node(obj);
+		newNode.next = this.head;
+		this.head = newNode;	
 	}
 
 	public void add(int pos, Object obj) throws Exception { 
