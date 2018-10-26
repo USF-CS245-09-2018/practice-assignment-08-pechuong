@@ -42,9 +42,12 @@ public class LinkedList implements List {
 	}
 
 	public Object get(int pos) throws Exception {
+		if (pos < 0 || this.size == 0 || pos > this.size) {
+			throw new Exception("Error getting pos: " + pos);
+		}
 		int listPosition = 0;
 		Node currNode = this.head;
-		while (listPosition < pos) {
+		while (currNode.data != null && listPosition < pos) {
 			currNode = currNode.next;
 			listPosition++;
 		}
@@ -52,11 +55,24 @@ public class LinkedList implements List {
 	}
 	
 	public Object remove(int pos) throws Exception {
-		return null;	
+		if (pos < 0 || this.size == 0 || pos > this.size) {
+			throw new Exception("Error removing with pos: " + pos);
+		}
+		int listPosition = 0;
+		Node currNode = this.head;
+		while (listPosition < pos) {
+			currNode = currNode.next;	
+			listPosition++;
+		}
+		currNode.prev.next = currNode.next;
+		currNode.next.prev = currNode.prev;
+		this.size--;
+		return currNode;
+
 	}
 
 	public int size() {
-		return this.size;	
+		return this.size;
 	}
 
 }
