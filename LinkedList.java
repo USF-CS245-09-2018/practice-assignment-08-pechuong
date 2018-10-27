@@ -63,7 +63,7 @@ public class LinkedList implements List {
 			throw new Exception("Error removing with pos: " + pos);
 		}
 		Node currNode = this.head;
-		if (this.size == 1) {
+		if (this.size == 1 || pos == 0) {
 			this.head = currNode.next;
 			this.size--;
 			return currNode.data;	
