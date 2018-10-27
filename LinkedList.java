@@ -25,7 +25,7 @@ public class LinkedList implements List {
 		newNode.next = this.head;
 		this.head = newNode;	
 		this.size++;
-		System.out.println("Size is: " + this.size);
+		//System.out.println("Size is: " + this.size);
 	}
 
 	public void add(int pos, Object obj) throws Exception { 
@@ -62,8 +62,13 @@ public class LinkedList implements List {
 		if (pos < 0 || this.size == 0 || pos > this.size) {
 			throw new Exception("Error removing with pos: " + pos);
 		}
-		int listPosition = 0;
 		Node currNode = this.head;
+		if (this.size == 1) {
+			this.head = currNode.next;
+			this.size--;
+			return currNode.data;	
+		}
+		int listPosition = 0;
 		while (listPosition < pos) {
 			currNode = currNode.next;	
 			listPosition++;
@@ -71,7 +76,7 @@ public class LinkedList implements List {
 		currNode.prev.next = currNode.next;
 		currNode.next.prev = currNode.prev;
 		this.size--;
-		return currNode;
+		return currNode.data;
 
 	}
 
