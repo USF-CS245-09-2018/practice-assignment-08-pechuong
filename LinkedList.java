@@ -43,15 +43,10 @@ public class LinkedList implements List {
 			currNode = currNode.next;
 			listPosition++;
 		}
-		System.out.println("Hello I got here 0");
 		currNode.prev.next = new Node(obj);
-		System.out.println("Hello I got here 1");
 		currNode.prev.next.prev = currNode.prev;
-		System.out.println("Hello I got here 2");
 		currNode.prev.next.next = currNode;
-		System.out.println("Hello I got here 3");
 		currNode.prev = currNode.prev.next;
-		System.out.println("Hello I got here 4");
 		this.size++;
 	}
 
