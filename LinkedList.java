@@ -23,6 +23,7 @@ public class LinkedList implements List {
 	public void add(Object obj) throws Exception {
 		Node newNode = new Node(obj);
 		newNode.next = this.head;
+		this.head.prev = newNode;
 		this.head = newNode;	
 		this.size++;
 		//System.out.println("Size is: " + this.size);
@@ -32,16 +33,25 @@ public class LinkedList implements List {
 		if (pos > this.size) {
 			throw new Exception("pos: " + pos +" is greater than size");
 		}
+		if (pos == 0 || this.size == 0) {
+			add(obj);	
+			return;
+		}
 		int listPosition = 0;
 		Node currNode = this.head;
 		while (currNode.data != null && listPosition < pos) {
 			currNode = currNode.next;
 			listPosition++;
 		}
+		System.out.println("Hello I got here 0");
 		currNode.prev.next = new Node(obj);
+		System.out.println("Hello I got here 1");
 		currNode.prev.next.prev = currNode.prev;
+		System.out.println("Hello I got here 2");
 		currNode.prev.next.next = currNode;
+		System.out.println("Hello I got here 3");
 		currNode.prev = currNode.prev.next;
+		System.out.println("Hello I got here 4");
 		this.size++;
 	}
 
